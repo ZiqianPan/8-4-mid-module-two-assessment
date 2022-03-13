@@ -247,17 +247,18 @@ function getRottenTomatoesScoreByMovie(movies) {
 //.find to find the ratings - 
 //set it to result = to get array of object.
 
-  result = movies.map(movie => {
-    //return movie.title;
-    return movie.ratings.find(eachRating => {
+   movies.map(movie => {
+    let str =  movie.ratings.find(eachRating => {
       if (eachRating.source === "Rotten Tomatoes"){//how can I just return part of it? instead of then whole ele
-        return  {[movie.title]: eachRating.value }
-        
+        //console.log({[movie.title]: eachRating.value});//console.log works but return give whole obj
+        return eachRating;
+      
       }
     })
 
+     result.push(result[movie.title] = str.value);
     });
-    
+   
   console.log(result);
   return result;
 }
