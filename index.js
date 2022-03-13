@@ -31,12 +31,11 @@ const exampleMovies = require("./movies");
     ];
  */
 function getAllMovieTitles(movies) {
-  
-if (!movies.length){
-  throw "There is no movies";
-}
+  if (!movies.length) {
+    throw "There is no movies";
+  }
 
-  let result = movies.map(movie => {
+  let result = movies.map((movie) => {
     return movie.title;
   });
 
@@ -61,18 +60,16 @@ if (!movies.length){
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating(movies,rating = "G") {
-if (!movies.length){
-  throw "no movies given.";
-}
+function checkIfAnyMovieHasRating(movies, rating = "G") {
+  if (!movies.length) {
+    throw "no movies given.";
+  }
 
-const result = movies.some(movie => {
-return movie.rated === rating;
+  const result = movies.some((movie) => {
+    return movie.rated === rating;
+  });
 
-})
-
-
-return result;
+  return result;
 }
 
 /**
@@ -91,23 +88,22 @@ return result;
       // Toy Story 4
     };
  */
-function findById(movies,id) {
-  if (!movies.length){
+function findById(movies, id) {
+  if (!movies.length) {
     throw "no movies given.";
   }
-//return the object - .find.
-const result = movies.find(movie => {
-  if (movie.imdbID === id) {
-    return movie;
-  } 
-})
-if (!result){
-  return null;
-} else {
-  return result;
-}
 
-//return result;
+  const result = movies.find((movie) => {
+    if (movie.imdbID === id) {
+      return movie;
+    }
+  });
+  if (!result) {
+    return null;
+  } else {
+    return result;
+  }
+
 }
 
 /**
@@ -132,21 +128,21 @@ if (!result){
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre(movies,genre) {
-  if (!movies.length){
+function filterByGenre(movies, genre) {
+  if (!movies.length) {
     throw "no movies given.";
   }
 
-  genre = genre.charAt(0).toUpperCase() + genre.toLowerCase().slice(1);
+  genre = genre.charAt(0).toUpperCase() + genre.toLowerCase().slice(1);//case-insensitive
   //console.log(genre)
-  
-  const result = movies.filter(movie => {
-    if (movie.genre.includes(genre)){
+
+  const result = movies.filter((movie) => {
+    if (movie.genre.includes(genre)) {
       return movie;
     }
-  })
+  });
 
-return result;
+  return result;
 }
 
 /**
@@ -173,15 +169,15 @@ return result;
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   if (!movies.length) {
     throw "missing movies.";
   }
 
-  const result = movies.filter(movie => {
-    return movie.released.substring(movie.released.length - 4) <= year;//had to grab last 4 char of the string
+  const result = movies.filter((movie) => {
+    return movie.released.substring(movie.released.length - 4) <= year; //had to grab last 4 char of the string
   });
-  
+
   return result;
 }
 
@@ -199,16 +195,16 @@ function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores(movies,metascore) {
-if (!movies.length) {
-  throw "missing movies.";
-}
+function checkMinMetascores(movies, metascore) {
+  if (!movies.length) {
+    throw "missing movies.";
+  }
 
-const result = movies.every(movie => {
-  return movie.metascore >= metascore;
-})
+  const result = movies.every((movie) => {
+    return movie.metascore >= metascore;
+  });
 
-return result;
+  return result;
 }
 
 /**
@@ -242,24 +238,18 @@ function getRottenTomatoesScoreByMovie(movies) {
 
   let result = [];
 
-//use map to get array of titles. 
-//how can I make the object? then push it into the array. -- 
-//.find to find the ratings - 
-//set it to result = to get array of object.
-
-   movies.map(movie => {
-    let str =  movie.ratings.find(eachRating => {
-      if (eachRating.source === "Rotten Tomatoes"){//how can I just return part of it? instead of then whole ele
-        //console.log({[movie.title]: eachRating.value});//console.log works but return give whole obj
+  movies.map((movie) => {
+    //loops through all already
+    let str = movie.ratings.find((eachRating) => {
+      //got to set it to a var so I can get part of it
+      if (eachRating.source === "Rotten Tomatoes") {
         return eachRating;
-      
       }
-    })
-
-     result.push({[movie.title] : str.value});
     });
-   
-  console.log(result);
+
+    result.push({ [movie.title]: str.value }); //push this format into the arr.
+  });
+
   return result;
 }
 
