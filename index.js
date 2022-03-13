@@ -256,7 +256,7 @@ function getRottenTomatoesScoreByMovie(movies) {
       }
     })
 
-     result.push(result[movie.title] = str.value);
+     result.push({[movie.title] : str.value});
     });
    
   console.log(result);
