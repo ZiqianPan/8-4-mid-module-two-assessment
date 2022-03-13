@@ -179,7 +179,7 @@ function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
   }
 
   const result = movies.filter(movie => {
-    return movie.released.substring(movie.released.length - 4) <= year;//had to 
+    return movie.released.substring(movie.released.length - 4) <= year;//had to grab last 4 char of the string
   });
   
   return result;
