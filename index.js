@@ -235,7 +235,32 @@ return result;
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (!movies.length) {
+    throw "missing movies.";
+  }
+
+  let result = [];
+
+//use map to get array of titles. 
+//how can I make the object? then push it into the array. -- 
+//.find to find the ratings - 
+//set it to result = to get array of object.
+
+  result = movies.map(movie => {
+    //return movie.title;
+    return movie.ratings.find(eachRating => {
+      if (eachRating.source === "Rotten Tomatoes"){//how can I just return part of it? instead of then whole ele
+        return  {[movie.title]: eachRating.value }
+        
+      }
+    })
+
+    });
+    
+  console.log(result);
+  return result;
+}
 
 // Do not change anything below this line.
 module.exports = {
