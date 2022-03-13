@@ -30,7 +30,18 @@ const exampleMovies = require("./movies");
       "James and the Giant Peach",
     ];
  */
-function getAllMovieTitles() {}
+function getAllMovieTitles(movies) {
+  
+if (!movies.length){
+  throw "There is no movies";
+}
+
+  let result = movies.map(movie => {
+    return movie.title;
+  });
+
+  return result;
+}
 
 /**
  * checkIfAnyMovieHasRating()
@@ -50,7 +61,19 @@ function getAllMovieTitles() {}
  *  checkIfAnyMovieHasRating(movies, "R");
  *  //> false
  */
-function checkIfAnyMovieHasRating() {}
+function checkIfAnyMovieHasRating(movies,rating = "G") {
+if (!movies.length){
+  throw "no movies given.";
+}
+
+const result = movies.some(movie => {
+return movie.rated === rating;
+
+})
+
+
+return result;
+}
 
 /**
  * findById()
@@ -68,7 +91,24 @@ function checkIfAnyMovieHasRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies,id) {
+  if (!movies.length){
+    throw "no movies given.";
+  }
+//return the object - .find.
+const result = movies.find(movie => {
+  if (movie.imdbID === id) {
+    return movie;
+  } 
+})
+if (!result){
+  return null;
+} else {
+  return result;
+}
+
+//return result;
+}
 
 /**
  * filterByGenre()
@@ -92,7 +132,22 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies,genre) {
+  if (!movies.length){
+    throw "no movies given.";
+  }
+
+  genre = genre.charAt(0).toUpperCase() + genre.toLowerCase().slice(1);
+  //console.log(genre)
+  
+  const result = movies.filter(movie => {
+    if (movie.genre.includes(genre)){
+      return movie;
+    }
+  })
+
+return result;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -118,7 +173,17 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies,year) {
+  if (!movies.length) {
+    throw "missing movies.";
+  }
+
+  const result = movies.filter(movie => {
+    return movie.released.substring(movie.released.length - 4) <= year;//had to 
+  });
+  
+  return result;
+}
 
 /**
  * checkMinMetascores()
@@ -134,7 +199,17 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  checkMinMetascores(movies, 90));
  *  //>  false
  */
-function checkMinMetascores() {}
+function checkMinMetascores(movies,metascore) {
+if (!movies.length) {
+  throw "missing movies.";
+}
+
+const result = movies.every(movie => {
+  return movie.metascore >= metascore;
+})
+
+return result;
+}
 
 /**
  * getRottenTomatoesScoreByMovie()
